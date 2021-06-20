@@ -4,18 +4,14 @@ import GUI.*;
 
 import javax.sound.sampled.Line;
 
-public class GomokuMode implements Util{
-    int x = 0;
-    int y = 0;
-    int [][] arr = null;
+public class GomokuMode extends GameMode implements Util{
 
     public GomokuMode(int x, int y, int[][] arr){
-        this.x = x;
-        this.y = y;
-        this.arr = arr;
+        super(x,y,arr);
     }
 
-    public boolean win(int color){
+    @Override
+    public boolean modify(int color){
         System.out.println(x + ' ' + y);
         int cons = 0;
         //five consecutive horizontally
@@ -31,7 +27,6 @@ public class GomokuMode implements Util{
                 }
             }
             catch(IndexOutOfBoundsException e){
-                continue;
             }
         }
         // five consecutive vertically
@@ -48,7 +43,6 @@ public class GomokuMode implements Util{
                 }
             }
             catch(IndexOutOfBoundsException e){
-                continue;
             }
         }
         // five consecutive diagonal
@@ -66,7 +60,6 @@ public class GomokuMode implements Util{
                 }
             }
             catch(IndexOutOfBoundsException e){
-                continue;
             }
         }
         // five consecutive alt-diagonal
@@ -84,10 +77,14 @@ public class GomokuMode implements Util{
                 }
             }
             catch(IndexOutOfBoundsException e){
-                continue;
             }
         }
         return false;
+    }
+
+    @Override
+    public int[][] arrReturn() {
+        return null;
     }
 
 }

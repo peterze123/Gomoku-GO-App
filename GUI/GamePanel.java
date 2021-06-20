@@ -6,29 +6,32 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.AbstractCollection.*;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class GamePanel extends JPanel implements Util {
-    int[][] gomokuArray = new int[LINE][LINE];
+    public int[][] gomokuArray = new int[LINE][LINE];
     StoneListener x = new StoneListener();
     Stack<Point> posStack = new Stack<Point>();
+    public int mode = 0;
     //
     public GamePanel(){
         this.setBackground(new Color(150,139,100));
     }
     //
-    public void gameInitialize(){
+    public void gameInitialize(int mode){
         posStack.clear();
         x.color = 1;
         x.matchPanel(this);
         this.addMouseListener(x);
+        this.mode = mode;
     }
     //
     public void reset(){
         posStack.clear();
         this.gomokuArray = new int[LINE][LINE];
-        x.color = 1;
         this.repaint();
+        x.color = 1;
     }
     //
     public void victory(int color){
@@ -39,6 +42,10 @@ public class GamePanel extends JPanel implements Util {
             JOptionPane.showMessageDialog(this, "white win");
         }
        this.reset();
+    }
+    //
+    public void warning(){
+        JOptionPane.showMessageDialog(this, "Could not be placed here");
     }
     //
     @Override

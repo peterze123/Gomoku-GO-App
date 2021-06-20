@@ -1,9 +1,12 @@
 package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EmptyStackException;
 
+//
 public class Frame<FrameListener> extends JFrame implements Util {
     public GamePanel board = new GamePanel();
     public Frame() {
@@ -25,32 +28,45 @@ public class Frame<FrameListener> extends JFrame implements Util {
         panel.add(b2);
         panel.add(b3);
         //
-        String[] boxen= {"Gomoku","Go"};
-        JComboBox box=new JComboBox(boxen);
-        box.setPreferredSize(new Dimension(120, 40));
-        panel.add(box);
+        String[] choices = {"Gomoku","Go"};
+        JComboBox mode = new JComboBox(choices);
+        mode.setPreferredSize(new Dimension(120, 40));
+        panel.add(mode);
         //
         this.add(board, BorderLayout.CENTER);
         this.setVisible(true);
         //
         b1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { board.gameInitialize();
+            public void actionPerformed(ActionEvent e) {
+                int option = 0;
+                if (mode.getSelectedItem().equals("Gomoku")){
+                    board.reset();
+                    board.gameInitialize(1);
+                }
+                else{
+                    board.reset();
+                    board.gameInitialize(2);
+                }
             }
         });
         //
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Point pos = board.posStack.pop();
-                if (board.gomokuArray[pos.x][pos.y] == 1){
-                    board.x.color = 1;
+                try {
+                    Point pos = board.posStack.pop();
+                    if (board.gomokuArray[pos.x][pos.y] == 1){
+                        board.x.color = 1;
+                    }
+                    else{
+                        board.x.color = 2;
+                    }
+                    board.gomokuArray[pos.x][pos.y] = 0;
+                    board.repaint();
                 }
-                else{
-                    board.x.color = 2;
+                catch(EmptyStackException ev){
                 }
-                board.gomokuArray[pos.x][pos.y] = 0;
-                board.repaint();
             }
         });
         //

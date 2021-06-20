@@ -9,6 +9,7 @@ public class StoneListener implements MouseListener, Util{
     GamePanel gp;
     public void matchPanel(GamePanel x){gp = x;}
     int color = 0;
+    GameMode game = null;
     @Override
     public void mouseClicked(MouseEvent e) {
         int x = e.getX()/20 * 20;
@@ -21,11 +22,12 @@ public class StoneListener implements MouseListener, Util{
             gp.gomokuArray[arrX][arrY] = color;
             gp.repaint();
             //
-            GomokuMode game = new GomokuMode(arrX, arrY, gp.gomokuArray);
-            if (game.win(color)){
-                gp.victory(color);
-                return;
+            game = new GomokuMode(arrX, arrY, gp.gomokuArray);
+            if (game.modify(color)){
+                    gp.victory(color);
+                    return;
             }
+            //
             if (color == 1){
                 color = 2;
             }
