@@ -1,18 +1,14 @@
 package Game;
 
 import GUI.*;
-
-import javax.sound.sampled.Line;
-
+// extends GameMode, checks if the new stone placed has won the game (Gomoku)
 public class GomokuMode extends GameMode implements Util{
-
     public GomokuMode(int x, int y, int[][] arr){
         super(x,y,arr);
     }
-
+    // checks every possible win conditions of the new stone placed
     @Override
     public boolean modify(int color){
-        System.out.println(x + ' ' + y);
         int cons = 0;
         //five consecutive horizontally
         for(int i = 0; i < x + 5; i++){
@@ -81,7 +77,7 @@ public class GomokuMode extends GameMode implements Util{
         }
         return false;
     }
-
+    // not used for gomoku mode
     @Override
     public int[][] arrReturn() {
         return null;
