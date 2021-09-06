@@ -29,7 +29,7 @@ public class Frame<FrameListener> extends JFrame implements Util {
         panel.add(b2);
         panel.add(b3);
         // combo box to choose game mode
-        String[] choices = {"Gomoku","Go"};
+        String[] choices = {"Gomoku"};
         JComboBox mode = new JComboBox(choices);
         mode.setPreferredSize(new Dimension(120, 40));
         panel.add(mode);

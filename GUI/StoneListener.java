@@ -13,7 +13,7 @@ public class StoneListener implements MouseListener, Util{
     public void matchPanel(GamePanel x){gp = x;}
     int color = 0;
     // object used to check if the win condition has met
-    GameMode game = null;
+    winChecker game = null;
     @Override
     // enable actions performed by mouse clicks
     public void mouseClicked(MouseEvent e) {

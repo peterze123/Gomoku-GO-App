@@ -2,7 +2,7 @@ package Game;
 
 import GUI.*;
 // extends GameMode, checks if the new stone placed has won the game (Gomoku)
-public class GomokuMode extends GameMode implements Util{
+public class GomokuMode extends winChecker implements Util{
     public GomokuMode(int x, int y, int[][] arr){
         super(x,y,arr);
     }

@@ -1,12 +1,12 @@
 package Game;
 
 // this class checks whether the win condition has met
-public abstract class GameMode {
+public abstract class winChecker {
     int x;
     int y;
     int [][] arr;
     // with each new stone placed, a new gamemode is constructed to check if the win condition has met
-    public GameMode(int x, int y, int[][] arr){
+    public winChecker(int x, int y, int[][] arr){
         this.x = x;
         this.y = y;
         this.arr = arr;
